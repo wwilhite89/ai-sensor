@@ -3,17 +3,6 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-	//player health
-	public int hp = 100;
-	public int hp_max = 200;
-	public int level;
-	public int score = 0;
-	public int ammunition = 100;
-	public Vector2 pos;
-	public Vector2 size;
-	public Texture2D emptyTex;
-	public Texture2D fullTex;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -31,7 +20,6 @@ public class PlayerScript : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
-		ammunition = PlayerPrefs.GetInt("ammo");
 
 			// movement and rotation
 			float translation = Input.GetAxis("Vertical") * speed;
