@@ -7,15 +7,14 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	//player speeds
-	public float speed = 1F;
-	public float rotationSpeed = 0.25F;
+	public float speed;
+	public float rotationSpeed;
+
+	void update() {
+
+		}
 	
 	
 	void FixedUpdate()
@@ -27,10 +26,17 @@ public class PlayerScript : MonoBehaviour {
 			translation *= Time.deltaTime/5;
 			transform.Translate(0, translation, 0);
 			transform.Rotate(0, 0, -rotation);
-			
-			
 
-			
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, this.transform.up, 3.0f, 1 << 8);
+		Debug.DrawRay (transform.position, this.transform.up * 3.0f, Color.cyan);
+
+		if (hit.collider != null) {
+						float distance = Mathf.Abs (hit.point.y - transform.position.y);
+	
+						Debug.Log ("The dist is " + distance.ToString("F2"));
+				}
+
+
 	}
 }
 
