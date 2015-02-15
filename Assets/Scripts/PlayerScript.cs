@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
-
-	//variables 
 	public float speed;
 	public float rotationSpeed;
 	public float playerOffset;
@@ -17,9 +15,13 @@ public class PlayerScript : MonoBehaviour {
 
 	void update() {
 
-		}
-	
-	
+	}
+
+	void OnTriggerStay2D(Collider2D col) {
+		AdjacentAgentSensor sensor = gameObject.GetComponent<AdjacentAgentSensor>();
+		sensor.Sense(col, gameObject);
+	}
+
 	void FixedUpdate()
 	{
 
@@ -70,9 +72,9 @@ public class PlayerScript : MonoBehaviour {
 						hitRight.distance = sensorLength;
 
 		// print the distances found to the console
-		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
-		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
-		           "LeftSensor " + hitLeft.distance.ToString("F2"));
+//		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
+//		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
+//		           "LeftSensor " + hitLeft.distance.ToString("F2"));
 	}
 }
 
