@@ -72,9 +72,9 @@ public class PlayerScript : MonoBehaviour {
 						hitRight.distance = sensorLength;
 
 		// print the distances found to the console
-//		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
-//		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
-//		           "LeftSensor " + hitLeft.distance.ToString("F2"));
+		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
+		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
+		           "LeftSensor " + hitLeft.distance.ToString("F2"));
 	}
 }
 
