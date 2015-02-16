@@ -31,13 +31,13 @@ public class PieSensorScript : MonoBehaviour
     {
 
         // Draw some pie slices
-        if (Input.GetKey(KeyCode.P))
-        {
-            Debug.DrawRay(transform.position, this.transform.up * range, Color.yellow);
-            Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
+       // if (Input.GetKey(KeyCode.P))
+       // {
+            //Debug.DrawRay(transform.position, this.transform.up * range, Color.yellow);
+            //Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
             //Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
 
-        }
+       // }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -74,7 +74,7 @@ public class PieSensorScript : MonoBehaviour
             if (Vector3.Cross(startDir, objDir).z < 0)
                 angle = 180 + (180 - angle);
 
-            float relativeAngle = (360.0f + angle - transform.eulerAngles.z) % 360.0f;
+            float relativeAngle = (360.0f + angle - offsetRotation) % 360.0f;
 
             switch (slice)
             {
