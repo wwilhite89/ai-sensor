@@ -15,8 +15,6 @@ public class ConsoleDebug : MonoBehaviour
 
     List<Log> logs = new List<Log>();
     Vector2 scrollPosition;
-    bool show;
-    bool collapse;
 
     // Visual elements:
 
@@ -34,7 +32,12 @@ public class ConsoleDebug : MonoBehaviour
     Rect windowRect = new Rect(margin, margin, Screen.width/4, Screen.height - (margin * 2));
     Rect titleBarRect = new Rect(0, 0, 10000, 20);
     GUIContent clearLabel = new GUIContent("Clear", "Clear the contents of the console.");
+    GUIContent details = new GUIContent("Position", "Position and heading");
     GUIContent collapseLabel = new GUIContent("Collapse", "Hide repeated messages.");
+
+    public void setPositionHeading(Vector3 pos, float heading) { 
+        details.text = "Position: " + pos + "\nHeading: " + heading + " degrees";
+    }
 
     void OnEnable()
     {
@@ -68,17 +71,6 @@ public class ConsoleDebug : MonoBehaviour
         {
             var log = logs[i];
 
-            // Combine identical messages if collapse option is chosen.
-            if (collapse)
-            {
-                var messageSameAsPrevious = i > 0 && log.message == logs[i - 1].message;
-
-                if (messageSameAsPrevious)
-                {
-                    continue;
-                }
-            }
-
             GUI.contentColor = logTypeColors[log.type];
             GUILayout.Label(log.message);
         }
@@ -94,7 +86,7 @@ public class ConsoleDebug : MonoBehaviour
             logs.Clear();
         }
 
-        collapse = GUILayout.Toggle(collapse, collapseLabel, GUILayout.ExpandWidth(false));
+        GUILayout.TextArea(details.text, GUILayout.ExpandWidth(false));
 
         GUILayout.EndHorizontal();
 
