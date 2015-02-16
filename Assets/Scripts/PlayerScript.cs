@@ -6,22 +6,6 @@ public class PlayerScript : MonoBehaviour {
 	public float speed;
 	public float rotationSpeed;
 
-	
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	void update() {
-		
-	}
-	
-	void OnTriggerStay2D(Collider2D col) {
-		AdjacentAgentSensor sensor = gameObject.GetComponent<AdjacentAgentSensor>();
-		sensor.Sense(col, gameObject);
-	}
-	
 	void FixedUpdate()
 	{
 		
