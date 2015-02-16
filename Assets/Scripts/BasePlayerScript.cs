@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BasePlayerScript : MonoBehaviour {
@@ -6,14 +7,13 @@ public class BasePlayerScript : MonoBehaviour {
     public float speed;
     public float rotationSpeed;
 
-	// Use this for initialization
+    // Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
 
     void FixedUpdate() { 
@@ -26,4 +26,5 @@ public class BasePlayerScript : MonoBehaviour {
 		transform.Rotate(0, 0, -rotation);
 
     }
+
 }
