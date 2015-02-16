@@ -6,6 +6,9 @@ public class PlayerScript : MonoBehaviour {
 	public float rotationSpeed;
 	public float playerOffset;
 	public float sensorLength;
+	private string rightDist;
+	private string leftDist;
+	private string fwdDist;
 
 
 	// Use this for initialization
@@ -68,13 +71,27 @@ public class PlayerScript : MonoBehaviour {
 						hitFront.distance = sensorLength;
 		if (hitLeft.collider == null)
 						hitLeft.distance = sensorLength;
-		if (hitRight.collider == null)
-						hitRight.distance = sensorLength;
+		if (hitRight.collider == null) {
+			hitRight.distance = sensorLength;
+			GUI.Label (new Rect (10,10,10,20), "right sensor hit");
+		}
 
 		// print the distances found to the console
 		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
 		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
 		           "LeftSensor " + hitLeft.distance.ToString("F2"));
+		rightDist = hitRight.distance.ToString ("F2");
+		leftDist = hitLeft.distance.ToString ("F2");
+		fwdDist = hitFront.distance.ToString ("F2");
 	}
+
+	void OnGUI() {
+		
+		GUI.Label (new Rect (10,10,150,20), "Left Wall Sensor: " + rightDist);
+		GUI.Label (new Rect (10,25,150,20), "Front Wall Sensor: " + leftDist);
+		GUI.Label (new Rect (10,40,150,20), "Right Wall Sensor: " + fwdDist);
+		
+	}
+
 }
 
