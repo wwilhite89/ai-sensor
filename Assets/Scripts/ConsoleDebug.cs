@@ -33,10 +33,26 @@ public class ConsoleDebug : MonoBehaviour
     Rect titleBarRect = new Rect(0, 0, 10000, 20);
     GUIContent clearLabel = new GUIContent("Clear", "Clear the contents of the console.");
     GUIContent details = new GUIContent("Position", "Position and heading");
-    GUIContent collapseLabel = new GUIContent("Collapse", "Hide repeated messages.");
+    BasePlayerScript player;
 
-    public void setPositionHeading(Vector3 pos, float heading) { 
-        details.text = "Position: " + pos + "\nHeading: " + heading + " degrees";
+    void Start() {
+        this.player = this.gameObject.GetComponent<BasePlayerScript>();
+    }
+
+    void Update()
+    {
+        float heading;
+
+        if (player != null)
+        {
+            Vector3 pos = player.GetPosition(out heading);
+
+            details.text = "Position: " + pos + "\nHeading: " + heading + " degrees";
+        }
+        else
+        {
+            details.text = "not working";
+        }   
     }
 
     void OnEnable()
@@ -49,12 +65,9 @@ public class ConsoleDebug : MonoBehaviour
         Application.RegisterLogCallback(null);
     }
 
-    void Update()
-    {
-    }
-
     void OnGUI()
     {
+        
         windowRect = GUILayout.Window(123456, windowRect, ConsoleWindow, "Console");
     }
 

@@ -6,11 +6,9 @@ public class BasePlayerScript : MonoBehaviour {
 
     public float speed;
     public float rotationSpeed;
-    private ConsoleDebug display;
 
     // Use this for initialization
 	void Start () {
-        this.display = gameObject.GetComponent<ConsoleDebug>();
 	}
 	
 	// Update is called once per frame
@@ -26,8 +24,11 @@ public class BasePlayerScript : MonoBehaviour {
 		translation *= Time.deltaTime/5;
 		transform.Translate(0, translation, 0);
 		transform.Rotate(0, 0, -rotation);
+    }
 
-        display.setPositionHeading(transform.position, transform.eulerAngles.z);
+    public Vector3 GetPosition(out float rotationAngle) {
+        rotationAngle = transform.eulerAngles.z;
+        return transform.position;
     }
 
 }
