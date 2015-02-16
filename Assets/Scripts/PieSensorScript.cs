@@ -7,6 +7,7 @@ public class PieSensorScript : MonoBehaviour
 
     public float range = 3F;
     public Vector3 startDir = new Vector3(0, 1, 0);
+    private int[] actLevels = new int[4];
 
     enum Slice
     {
@@ -29,28 +30,31 @@ public class PieSensorScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        drawPieSlices();
+        updateActivationLevels();
+    }
 
-        // Draw some pie slices
-       // if (Input.GetKey(KeyCode.P))
-       // {
-            //Debug.DrawRay(transform.position, this.transform.up * range, Color.yellow);
-            //Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
-            //Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
+    private void drawPieSlices() {
+        Debug.DrawRay(transform.position, this.transform.up * range, Color.yellow);
+        Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
+        Debug.DrawRay(transform.position, this.transform.right * range, Color.yellow);
+        Debug.DrawRay(transform.position, -this.transform.right * range, Color.yellow);
+    }
 
-       // }
+    private void updateActivationLevels() {
+        int[] oldLevels = new int[4];
+        actLevels.CopyTo(oldLevels, 0);
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log(
-                string.Format(
-                "Printing activation levels for Pie Sensor...\n" +
-                "TOP_RIGHT={0}\nTOP_LEFT={1}\nBOTTOM_RIGHT={2}\nBOTTOM_LEFT={3}\n",
-                getActivationLevel(Slice.TOP_RIGHT),
-                getActivationLevel(Slice.TOP_LEFT),
-                getActivationLevel(Slice.BOTTOM_RIGHT),
-                getActivationLevel(Slice.BOTTOM_LEFT)));
-        }
+        actLevels[0] = getActivationLevel(Slice.TOP_RIGHT);
+        actLevels[1] = getActivationLevel(Slice.TOP_LEFT);
+        actLevels[2] = getActivationLevel(Slice.BOTTOM_RIGHT);
+        actLevels[3] = getActivationLevel(Slice.BOTTOM_LEFT);
 
+        if (oldLevels[0] != actLevels[0] ||
+            oldLevels[1] != actLevels[1] ||
+            oldLevels[2] != actLevels[2] ||
+            oldLevels[3] != actLevels[3])
+            Debug.Log(string.Format("Activation Levels: {0},{1},{2},{3}", actLevels[0], actLevels[1], actLevels[2], actLevels[3]));
     }
 
     /// <summary>

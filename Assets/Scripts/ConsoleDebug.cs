@@ -13,11 +13,6 @@ public class ConsoleDebug : MonoBehaviour
         public LogType type;
     }
 
-    /// <summary>
-    /// The hotkey to show and hide the console window.
-    /// </summary>
-    public KeyCode toggleKey = KeyCode.BackQuote;
-
     List<Log> logs = new List<Log>();
     Vector2 scrollPosition;
     bool show;
@@ -36,7 +31,7 @@ public class ConsoleDebug : MonoBehaviour
 
     const int margin = 20;
 
-    Rect windowRect = new Rect(margin, margin, Screen.width - (margin * 2), Screen.height - (margin * 2));
+    Rect windowRect = new Rect(margin, margin, Screen.width/4, Screen.height - (margin * 2));
     Rect titleBarRect = new Rect(0, 0, 10000, 20);
     GUIContent clearLabel = new GUIContent("Clear", "Clear the contents of the console.");
     GUIContent collapseLabel = new GUIContent("Collapse", "Hide repeated messages.");
@@ -53,19 +48,10 @@ public class ConsoleDebug : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
-        {
-            show = !show;
-        }
     }
 
     void OnGUI()
     {
-        if (!show)
-        {
-            return;
-        }
-
         windowRect = GUILayout.Window(123456, windowRect, ConsoleWindow, "Console");
     }
 
