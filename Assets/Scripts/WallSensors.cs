@@ -66,9 +66,9 @@ public class WallSensors : MonoBehaviour {
 	// print the distances of each sensor to the game screen
 	void OnGUI() {
 		
-		GUI.Label (new Rect (10,10,150,20), "Left Wall Sensor: " + rightDist);
-		GUI.Label (new Rect (10,25,150,20), "Front Wall Sensor: " + leftDist);
-		GUI.Label (new Rect (10,40,150,20), "Right Wall Sensor: " + fwdDist);
+		GUI.Label (new Rect (10,10,150,20), "Left Wall Sensor: " + leftDist);
+		GUI.Label (new Rect (10,25,150,20), "Front Wall Sensor: " + fwdDist);
+		GUI.Label (new Rect (10,40,150,20), "Right Wall Sensor: " + rightDist);
 		
 	}
 
