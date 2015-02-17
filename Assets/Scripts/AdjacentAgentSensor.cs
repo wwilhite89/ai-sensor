@@ -25,9 +25,8 @@ public class AdjacentAgentSensor : MonoBehaviour {
 			Vector2 vector = new Vector2(distance, relativeAngle);
 			vectors.Add(vector);
 		}
-		int y = 10, x = 0;
+		int y = 10;
 		foreach(Vector2 vector in vectors) {
-			x++;
 			GUI.Label (new Rect (10,y,150,20), "Agent " + vector);
 			y += 15;
 		}
