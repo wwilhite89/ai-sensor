@@ -29,13 +29,13 @@ public class CreateAgent : MonoBehaviour {
 		float xRange = camera.aspect * camera.orthographicSize * 1.75f;
 		float yMax = camera.orthographicSize - 0.5f;
 		
-		// create a new cat position at random location at same z position
+		// create a new position at random location at same z position
 		Vector3 catPos = new Vector3 (cameraPos.x + 
 		                              Random.Range (xMax - xRange, xMax),
 		                              Random.Range (-yMax, yMax),
 		                              Agent.transform.position.z);
 		
-		// create an instance of the cat prefab at location catPos
+		// create an instance of the prefab at location catPos
 		Instantiate (Agent, catPos, Quaternion.identity);
 		Invoke ("SpawnAgent", Random.Range (minSpawnTime, maxSpawnTime));
 	}
