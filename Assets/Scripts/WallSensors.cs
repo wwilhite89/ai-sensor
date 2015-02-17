@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WallSensors : MonoBehaviour {
 
-
+	// variables
 	public float playerOffset;
 	public float sensorLength;
 	private string rightDist;
@@ -56,12 +56,14 @@ public class WallSensors : MonoBehaviour {
 		Debug.Log ("FrontSensor " + hitFront.distance.ToString("F2") + " " +
 		           "RightSensor " + hitRight.distance.ToString("F2") +  " " +
 		           "LeftSensor " + hitLeft.distance.ToString("F2"));
+
+		// set the distances for the gui print 
 		rightDist = hitRight.distance.ToString ("F2");
 		leftDist = hitLeft.distance.ToString ("F2");
 		fwdDist = hitFront.distance.ToString ("F2");
 	}
 
-
+	// print the distances of each sensor to the game screen
 	void OnGUI() {
 		
 		GUI.Label (new Rect (10,10,150,20), "Left Wall Sensor: " + rightDist);
